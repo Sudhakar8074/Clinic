@@ -1,0 +1,25 @@
+name: CI Workflow # Name displayed in the GitHub Actions tab
+
+on:
+  push:
+    branches:
+      - main # Trigger on push to the main branch
+  pull_request:
+    branches:
+      - main # Trigger on pull request to the main branch
+
+jobs:
+  build: # Define a job named "build"
+    runs-on: ubuntu-latest # Specify the runner environment (ubuntu-latest)
+    steps:
+      - uses: actions/checkout@v4 # Action to check out your code
+      - name: Set up Node.js # Name for the step
+        uses: actions/setup-node@v4 # Action to set up Node.js
+        with:
+          node-version: '20' # Specify Node.js version
+      - name: Install dependencies # Step to install dependencies
+        run: npm install # Command to run
+      - name: Run tests # Step to run tests
+        run: npm test # Command to run
+      - name: Build project # Step to build the project
+        run: npm run build # Command to run
